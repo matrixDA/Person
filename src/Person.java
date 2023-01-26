@@ -13,13 +13,29 @@ public class Person {
     private String title;
     private Integer YOB;
 
-    public Person(String firstName, String lastName, String ID, String title, Integer YOB) {
+    static private int IDSeed = 1;
+
+    public static void setIDSeed(int IDSeed) {Person.IDSeed = IDSeed;}
+
+    public static int getIDSeed(){return IDSeed;}
+
+    public Person(String ID,String firstName, String lastName,String title, Integer YOB) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.ID = ID;
         this.title = title;
         this.YOB = YOB;
     }
+
+    public Person(String firstName, String lastName, String title, Integer YOB)
+    {
+        this.ID = this.genID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.title = title;
+        this.YOB = YOB;
+    }
+
 
     public String getFirstName() {
         return firstName;
@@ -43,6 +59,16 @@ public class Person {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+    private String genID()
+    {
+        String newID = "" + IDSeed;
+        while (newID.length() < 8)
+        {
+            newID = "0" + newID;
+        }
+        IDSeed++;
+        return newID;
     }
 
     public String getTitle() {

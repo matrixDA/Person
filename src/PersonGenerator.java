@@ -11,7 +11,6 @@ public class PersonGenerator {
     public static void main(String[] args)
     {
         ArrayList<Person> personOData = new ArrayList<>();
-        ArrayList<String> personCSVData = new ArrayList<>();
 
         Scanner in = new Scanner(System.in);
         String ID = "";
@@ -33,7 +32,7 @@ public class PersonGenerator {
             YOB = SafeInput.getRangedInt(in,"Enter the year of birth as 4 digits", 1000, 9999);
 
 
-            personOData.add(new Person(firstName, lastName, ID, title, YOB));
+            personOData.add(new Person(ID,firstName, lastName, title, YOB));
 
 
 

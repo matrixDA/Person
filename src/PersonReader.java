@@ -42,15 +42,9 @@ public class PersonReader {
                     rec = reader.readLine();
                     lines.add(rec);
                     line++;
-                    System.out.println(rec);
                 }
                 reader.close();
-                System.out.println();
 
-
-
-                System.out.printf("%-10s%-15s%-15s%-6s%6s", "ID#", "FirstName", "LastName", "Title", "YOB");
-                System.out.print("\n========================================================");
                 String[] fields;
                 for(String l:lines)
                 {
@@ -63,9 +57,7 @@ public class PersonReader {
                         lastName = fields[2].trim();
                         title = fields[3].trim();
                         YOB = Integer.parseInt(fields[4].trim());
-                        System.out.printf("\n%-10s%-15s%-15s%-6s%6d", ID, firstName, lastName, title, YOB);
-                        personOData.add(new Person(firstName, lastName, ID, title, YOB));
-
+                        personOData.add(new Person(ID, firstName, lastName, title, YOB));
                     }
                     else
                     {
@@ -73,7 +65,6 @@ public class PersonReader {
                         System.out.println();
                     }
                 }
-                System.out.println();
             }
             else
             {
@@ -83,7 +74,7 @@ public class PersonReader {
             }
 
             for (Person p: personOData) {
-                System.out.println(p.getFormalName());
+                System.out.println(p.toString());
             }
         }  // end of TRY
         catch (FileNotFoundException e)
