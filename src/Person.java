@@ -185,6 +185,11 @@ public class Person {
         return retString;
 
     }
+
+    /**
+     *
+     * @return The object data in JSON format
+     */
     public String toJSONRecord()
     {
         String retString = "";
