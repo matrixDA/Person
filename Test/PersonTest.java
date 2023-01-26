@@ -90,7 +90,7 @@ public class PersonTest
         p1.setLastName("Tester2");
         p1.setTitle("Ms.");
         p1.setYOB(1975);
-        assertEquals(false, p1.equals(p2));
+        assertEquals(true, p1.equals(p2));
     }
 
 }

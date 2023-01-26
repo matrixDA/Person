@@ -14,6 +14,7 @@ public class PersonReader {
         String rec;
         ArrayList<String> lines = new ArrayList<>();
         ArrayList<Person> personOData = new ArrayList<>();
+        char DQ = '\u0022';
 
         final int FIELDS_LENGTH = 5;
 
@@ -74,8 +75,23 @@ public class PersonReader {
             }
 
             for (Person p: personOData) {
-                System.out.println(p.toString());
+                System.out.println(p.toCSVRecord());
             }
+
+            System.out.println();
+            System.out.println("<Person>");
+            for (Person p: personOData) {
+                System.out.println(p.toXMLRecord());
+            }
+            System.out.println("</Person>");
+            System.out.println();
+
+            System.out.println("{" + DQ + "Person" + DQ + ":[");
+            for (Person p: personOData) {
+                System.out.println(p.toJSONRecord());
+            }
+            System.out.println("]}");
+
         }  // end of TRY
         catch (FileNotFoundException e)
         {

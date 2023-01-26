@@ -19,6 +19,7 @@ public class PersonGenerator {
         String title = "";
         String CSVPersonRecord = "";
         int YOB = 0;
+        char DQ = '\u0022';
 
         File workingDirectory = new File(System.getProperty("user.dir"));
         Path file = Paths.get(workingDirectory.getPath() + "\\src\\PersonTestData.txt");
@@ -44,9 +45,20 @@ public class PersonGenerator {
         for (Person p: personOData) {
             System.out.println(p.toCSVRecord());
         }
+
+        System.out.println();
+        System.out.println("<Person>");
         for (Person p: personOData) {
-            System.out.println(p);
+            System.out.println(p.toXMLRecord());
         }
+        System.out.println("</Person>");
+        System.out.println();
+
+        System.out.println("{" + DQ + "Person" + DQ + ":[");
+        for (Person p: personOData) {
+            System.out.println(p.toJSONRecord());
+        }
+        System.out.println("]}");
         try
         {
             OutputStream out =

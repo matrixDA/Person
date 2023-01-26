@@ -1,4 +1,5 @@
 import java.time.Year;
+import java.util.Objects;
 
 /**
  * @author Dinesh Adhikari adhikaridinesh76@gmail.com
@@ -20,9 +21,9 @@ public class Person {
     public static int getIDSeed(){return IDSeed;}
 
     public Person(String ID,String firstName, String lastName,String title, Integer YOB) {
+        this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.ID = ID;
         this.title = title;
         this.YOB = YOB;
     }
@@ -151,11 +152,19 @@ public class Person {
         return ID + ", " + firstName + ", " + lastName + ", " + title + ", " + YOB;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(ID, person.ID) && Objects.equals(title, person.title) && Objects.equals(YOB, person.YOB);
+    }
 
 
     /**
      * XML Data for Person
      * <Person>
+     *     <ID>ID</ID>
      *     <firstName>firstName</firstName>
      *     <LastName>lastName</LastName>
      *     <title>title</title>
@@ -163,6 +172,31 @@ public class Person {
      * </Person>
      *
      */
+    public String toXMLRecord()
+    {
+        String retString = "";
+
+        retString = "<IDNum>" + this.ID + "</IDNum>";
+        retString += "<firstName>" + this.firstName + "</firstName>";
+        retString += "<lastName>" + this.lastName + "</lastName>";
+        retString += "<title>" + this.title + "</title>";
+        retString += "<YOB>" + this.YOB + "</YOB>";
+
+        return retString;
+
+    }
+    public String toJSONRecord()
+    {
+        String retString = "";
+        char DQ = '\u0022';  // Assign the double quote char to a variable
+        retString =  "{" + DQ + "IDNum" + DQ + ":" + DQ + this.ID + DQ + ",";
+        retString += DQ + "firstName" + DQ + ":" + DQ + this.firstName + DQ + ",";
+        retString += " " + DQ + "lastName"  + DQ + ":" + DQ + this.lastName + DQ + ",";
+        retString += " " + DQ + "title" + DQ + ":" + DQ + this.title +DQ + ";";
+        retString += " " + DQ + "YOB"  + DQ + ":" + this.YOB + "}";
+
+        return retString;
+    }
 }
 
 
