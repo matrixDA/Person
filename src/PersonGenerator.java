@@ -17,7 +17,6 @@ public class PersonGenerator {
         String firstName = "";
         String lastName = "";
         String title = "";
-        String CSVPersonRecord = "";
         int YOB = 0;
         char DQ = '\u0022';
 
